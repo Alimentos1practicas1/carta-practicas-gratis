@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solicitud de carta de prácticas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">FCII - UTE</p>
+        <h1>Solicitud de carta de prácticas</h1>
+        <p class="subtitle">
+          Completa el formulario para generar la carta en PDF y enviarla automáticamente a firma.
+        </p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-item">
+          <span class="label">Correo destino</span>
+          <strong id="destinationEmailLabel">aadh1007@outlook.com</strong>
+        </div>
+        <div class="hero-item">
+          <span class="label">Asunto</span>
+          <strong>Firma de carta de prácticas</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>Formulario</h2>
+        <form id="letterForm" class="form-grid" novalidate>
+          <div class="field full">
+            <label>Fecha automática</label>
+            <input id="currentDate" type="text" disabled />
+          </div>
+
+          <div class="field full">
+            <label for="destinatario">Nombre del representante o jefe inmediato *</label>
+            <input id="destinatario" name="destinatario" type="text" required placeholder="Ej. Ing. María Pérez" />
+          </div>
+
+          <div class="field">
+            <label for="cargo">Cargo *</label>
+            <input id="cargo" name="cargo" type="text" required placeholder="Ej. Jefa de Talento Humano" />
+          </div>
+
+          <div class="field">
+            <label for="empresaTipo">Tipo de empresa *</label>
+            <select id="empresaTipo" name="empresaTipo" required>
+              <option value="Ltda.">Ltda.</option>
+              <option value="S. A.">S. A.</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="empresa">Nombre de la empresa *</label>
+            <input id="empresa" name="empresa" type="text" required placeholder="Ej. Alimentos Andinos" />
+          </div>
+
+          <div class="field">
+            <label for="tratamiento">Tratamiento *</label>
+            <select id="tratamiento" name="tratamiento" required>
+              <option value="Sr.">Sr.</option>
+              <option value="Sra.">Sra.</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="solicitante">Nombre del solicitante *</label>
+            <input id="solicitante" name="solicitante" type="text" required placeholder="Nombre completo" />
+          </div>
+
+          <div class="field">
+            <label for="cedula">Número de cédula *</label>
+            <input id="cedula" name="cedula" type="text" inputmode="numeric" required placeholder="Ej. 1723456789" />
+          </div>
+
+          <div class="field">
+            <label for="nivel">Nivel *</label>
+            <select id="nivel" name="nivel" required>
+              <option value="primer">Primer</option>
+              <option value="segundo">Segundo</option>
+              <option value="tercer">Tercer</option>
+              <option value="cuarto" selected>Cuarto</option>
+              <option value="quinto">Quinto</option>
+              <option value="sexto">Sexto</option>
+              <option value="séptimo">Séptimo</option>
+              <option value="octavo">Octavo</option>
+              <option value="noveno">Noveno</option>
+              <option value="décimo">Décimo</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="meses">Duración en meses *</label>
+            <input id="meses" name="meses" type="number" min="1" max="24" value="3" required />
+          </div>
+
+          <div class="field">
+            <label for="fechaInicio">Fecha de inicio *</label>
+            <input id="fechaInicio" name="fechaInicio" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="fechaFin">Fecha de finalización *</label>
+            <input id="fechaFin" name="fechaFin" type="date" required />
+          </div>
+
+          <div class="field full consent">
+            <label class="checkbox-row">
+              <input id="confirmacion" type="checkbox" required />
+              <span>Confirmo que la información ingresada es correcta y autorizo el envío de la carta.</span>
+            </label>
+          </div>
+
+          <div class="actions full">
+            <button type="button" id="previewBtn" class="secondary">Actualizar vista previa</button>
+            <button type="button" id="downloadBtn" class="secondary">Descargar PDF</button>
+            <button type="submit" id="sendBtn" class="primary">Enviar a firma</button>
+          </div>
+
+          <p id="status" class="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="card preview-card">
+        <div class="preview-header">
+          <h2>Vista previa de la carta</h2>
+          <button id="copyBtn" class="ghost">Copiar texto</button>
+        </div>
+        <textarea id="previewText" readonly></textarea>
+      </section>
+    </main>
+
+    <section class="card help-card">
+      <h2>Qué hace esta versión</h2>
+      <ul>
+        <li>Genera el PDF en el navegador del usuario.</li>
+        <li>Envía el documento al correo configurado usando EmailJS.</li>
+        <li>No guarda historial ni crea carpetas.</li>
+        <li>Está pensada para publicarse gratis como sitio estático.</li>
+      </ul>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
